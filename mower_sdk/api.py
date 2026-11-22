@@ -88,7 +88,7 @@ class MowerAPI:
                     )
 
                 return await response.json()
-        except aiohttp.ClientError as e:
+        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
             raise MowerAPIError(
                 f"{ERROR_MESSAGES['API_REQUEST_FAILED']}: {str(e)}"
             ) from e
